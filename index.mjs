@@ -55,11 +55,11 @@ async function checkIn() {
 }
 
 // 使用node-cron设置定时任务，每天11:00执行
-cron.schedule("0 18 * * *", async () => {
+cron.schedule("40 2 * * *", async () => {
   console.log("开始执行签到任务...");
   await checkIn();
 });
 
-console.log("定时任务已设置，将在每天18:00执行");
+console.log("定时任务已设置，将在每天2:40执行");
 
 // 注意：在实际部署时，可能需要确保Node.js应用持续运行，可以考虑使用PM2等进程管理工具。
