@@ -2,7 +2,7 @@ import puppeteer from "puppeteer";
 import fs from "fs/promises";
 import sendEmail from "./emailNotification.mjs";
 import cron from "node-cron";
-
+import dayjs from "dayjs";
 // 定义签到任务
 async function checkIn() {
   const browser = await puppeteer.launch({ headless: true, devtools: false });
@@ -55,11 +55,17 @@ async function checkIn() {
 }
 
 // 使用node-cron设置定时任务，每天11:00执行
-cron.schedule("40 2 * * *", async () => {
-  console.log("开始执行签到任务...");
+cron.schedule("45 17 * * *", async () => {
+  console.log(
+    dayjs().format("YYYY-MM-DD HH:mm:ss") + "-" + "开始执行签到任务..."
+  );
   await checkIn();
 });
 
-console.log("定时任务已设置，将在每天2:40执行");
+console.log(
+  dayjs().format("YYYY-MM-DD HH:mm:ss") +
+    "-" +
+    "定时任务已设置，将在每天17:45执行"
+);
 
 // 注意：在实际部署时，可能需要确保Node.js应用持续运行，可以考虑使用PM2等进程管理工具。
