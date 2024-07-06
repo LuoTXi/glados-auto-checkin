@@ -2,7 +2,6 @@
 # exit on errorset -o errexit
 
 yarn 
-yarn start # uncomment if required
 
 # Store/pull Puppeteer cache with build cache
 if [[ ! -d $PUPPETEER_CACHE_DIR ]]; then 
