@@ -4,6 +4,7 @@ import sendEmail from "./emailNotification.mjs";
 import cron from "node-cron";
 import dayjs from "dayjs";
 import express from "express";
+import path from "path";
 const app = express();
 
 app.get("/", async (req, res) => {
@@ -19,7 +20,7 @@ async function checkIn() {
   const browser = await puppeteer.launch({
     headless: "shell",
     args: ["--enable-gpu"],
-    cacheDirectory: join(__dirname, ".cache", "puppeteer"),
+    cacheDirectory: path.join(__dirname, ".cache", "puppeteer"),
   });
   try {
     const page = await browser.newPage();
