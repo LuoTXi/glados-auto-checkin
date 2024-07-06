@@ -19,6 +19,7 @@ async function checkIn() {
   const browser = await puppeteer.launch({
     headless: "shell",
     args: ["--enable-gpu"],
+    cacheDirectory: join(__dirname, ".cache", "puppeteer"),
   });
   try {
     const page = await browser.newPage();
