@@ -6,7 +6,8 @@ import dayjs from "dayjs";
 import express from "express";
 const app = express();
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  await checkIn();
   res.send("Hello World!");
 });
 
