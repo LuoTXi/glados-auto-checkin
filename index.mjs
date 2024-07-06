@@ -16,7 +16,10 @@ app.listen(3000, () => {
 });
 // 定义签到任务
 async function checkIn() {
-  const browser = await puppeteer.launch({ headless: false, devtools: false });
+  const browser = await puppeteer.launch({
+    headless: "shell",
+    args: ["--enable-gpu"],
+  });
   try {
     const page = await browser.newPage();
     const cookies = process.env.COOKIES;
