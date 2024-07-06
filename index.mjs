@@ -26,6 +26,7 @@ async function checkIn() {
             button.textContent.trim() === "签到" ||
             button.textContent.trim() === "Checkin"
           ) {
+            button.click();
             return "success";
           }
         }
