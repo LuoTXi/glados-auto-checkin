@@ -3,9 +3,19 @@ import fs from "fs/promises";
 import sendEmail from "./emailNotification.mjs";
 import cron from "node-cron";
 import dayjs from "dayjs";
+import express from "express";
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.listen(3000, () => {
+  console.log("Example app listening on port 3000!");
+});
 // 定义签到任务
 async function checkIn() {
-  const browser = await puppeteer.launch({ headless: true, devtools: false });
+  const browser = await puppeteer.launch({ headless: false, devtools: false });
   try {
     const page = await browser.newPage();
     const cookies = process.env.COOKIES;
@@ -55,7 +65,7 @@ async function checkIn() {
 }
 
 // 使用node-cron设置定时任务，每天11:00执行
-cron.schedule("50 9 * * *", async () => {
+cron.schedule("10 10 * * *", async () => {
   console.log(
     dayjs().format("YYYY-MM-DD HH:mm:ss") + "-" + "开始执行签到任务..."
   );
@@ -65,7 +75,7 @@ cron.schedule("50 9 * * *", async () => {
 console.log(
   dayjs().format("YYYY-MM-DD HH:mm:ss") +
     "-" +
-    "定时任务已设置，将在每天美西时间9:50执行"
+    "定时任务已设置，将在每天美西时间10:10执行"
 );
 
 // 注意：在实际部署时，可能需要确保Node.js应用持续运行，可以考虑使用PM2等进程管理工具。
