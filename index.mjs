@@ -25,6 +25,8 @@ async function checkIn() {
     headless: "shell",
     args: ["--enable-gpu"],
     cacheDirectory: join(__dirname, ".cache", "puppeteer"),
+    executablePath:
+      "/opt/render/.cache/puppeteer/chrome/linux-126.0.6478.126/chrome-linux64/chrome",
   });
   try {
     const page = await browser.newPage();
